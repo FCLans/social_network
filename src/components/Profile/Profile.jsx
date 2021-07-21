@@ -3,7 +3,7 @@ import styles from './Profile.module.css'
 
 const Profile = () => {
   return (
-    <div className={styles.content}>
+    <div>
       <div>
         <img src="https://school48tmn.ru/wp-content/uploads/sochinenie-rassuzhdenie-priroda-rodnogo-kraya-9-klass.jpg" />
       </div>

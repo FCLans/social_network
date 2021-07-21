@@ -7,10 +7,8 @@ const MyPosts = () => {
       <textarea></textarea>
       <button>Add post</button>
       <div className={styles.posts}>
-        <Post message="1" />
-        <Post message="2" />
-        <Post message="3" />
-        <Post message="4" />
+        <Post message="1" likeCount="81" />
+        <Post message="2" likeCount="100" />
       </div>
     </div>
   )

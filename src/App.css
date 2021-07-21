@@ -10,3 +10,8 @@
     'header header'
     'navigation content_';
 }
+
+.app_wrapper_content {
+  grid-area: content_;
+  background-color: palegoldenrod;
+}
