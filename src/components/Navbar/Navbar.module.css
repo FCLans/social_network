@@ -1,0 +1,13 @@
+.navigation {
+  margin: 0 10px;
+  padding: 10px;
+  grid-area: navigation;
+  background-color: greenyellow;
+  font-size: 24px;
+}
+
+.item a {
+  color: rgba(0, 110, 255, 0.767);
+  text-decoration: none;
+  font-weight: bold;
+}
