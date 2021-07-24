@@ -1,6 +1,4 @@
 .header {
-  margin-left: 10px;
-  margin-bottom: 10px;
   grid-area: header;
   background-color: #ffffff;
 
@@ -9,11 +7,13 @@
 }
 
 .logo {
-  width: 50px;
+  display: flex;
 }
 
 .header img {
+  align-self:center;
   width: 50px;
+
 }
 
 .logo_text {

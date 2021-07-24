@@ -1,11 +1,11 @@
 .app_wrapper {
   display: grid;
 
-  width: 1200px;
+  width: 70vw;
 
   grid-template-rows: 60px 1fr 60px;
   grid-template-columns: 2fr 10fr;
-  /* grid-gap: 10px; */
+  grid-gap: 10px;
   grid-template-areas:
     'header header'
     'navigation content_'
@@ -15,6 +15,5 @@
 .app_wrapper_content {
   grid-area: content_;
   background-color: #ffff;
-
   padding: 20px;
 }

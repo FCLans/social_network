@@ -19,21 +19,35 @@ const Message = (props) => {
 }
 
 const Dialogs = (props) => {
+  let dialogsData = [
+    {id: 1, name: 'Иван'},
+    {id: 2, name: 'Петро'},
+    {id: 3, name: 'Андрей'},
+    {id: 4, name: 'Юлия'},
+    {id: 5, name: 'Капуста'}
+  ]
+
+  let messagesData = [
+    {id: 1, text: 'привет'},
+    {id: 2, text: 'Ты тут?'},
+    {id: 3, text: 'Возможно, что да'},
+    {id: 4, text: 'А как?'},
+    {id: 5, text: 'Ну вот)))'},
+  ]
+
   return (
     <div className={styles.dialogs}>
       <div className={styles.dialogs_items}>
-        <Dialog name="Иван" id="1" />
-        <Dialog name="Петро" id="2" />
-        <Dialog name="Андрей" id="3" />
-        <Dialog name="Юлия" id="4" />
-        <Dialog name="Капуста" id="5" />
+        <Dialog name={dialogsData[0].name} id={dialogsData[0].id} />
+        <Dialog name={dialogsData[1].name} id={dialogsData[1].id} />
+        <Dialog name={dialogsData[2].name} id={dialogsData[2].id} />
+        <Dialog name={dialogsData[3].name} id={dialogsData[3].id} />
+        <Dialog name={dialogsData[4].name} id={dialogsData[4].id} />
       </div>
       <div className={styles.messages}>
-        <Message text="привет!" />
-        <Message text="Ты тут?" />
-        <Message text="Возможно, что да" />
-        <Message text="А как?" />
-        <Message text="Ну вот)))" />
+        <Message text={messagesData[0].text} />
+        <Message text={messagesData[1].text} />
+        <Message text={messagesData[2].text} />
       </div>
     </div>
   )

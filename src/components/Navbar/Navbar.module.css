@@ -1,26 +1,26 @@
 .navigation {
-  margin: 0 10px;
-  padding: 10px;
   grid-area: navigation;
   font-size: 20px;
 }
 
 .item {
   padding: 10px;
+  position:relative;
+  width: 100px;
+  height: 20px;
 }
 
 .item a {
   color: #606061;
+
   text-decoration: none;
   font-weight: bold;
   padding: 10px;
-
-  width: 100%;
 }
 
 .item a:hover {
   border-bottom: solid 2px;
-  margin-left: 3px;
+  margin-left: 2px;
 
   transition: 0.13s;
 }
