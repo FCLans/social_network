@@ -1,10 +1,12 @@
 .body {
+  display: flex;
   background-color: #edeef0;
+  justify-content: center;
 }
 
 .app_wrapper {
   display: grid;
-  margin: 0 120px;
+
   width: 1200px;
 
   grid-template-rows: 60px 1fr 60px;
