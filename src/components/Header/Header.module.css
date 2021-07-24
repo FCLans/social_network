@@ -2,9 +2,21 @@
   margin-left: 10px;
   margin-bottom: 10px;
   grid-area: header;
-  background-color: greenyellow;
+  background-color: #ffffff;
+
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 50px;
 }
 
 .header img {
   width: 50px;
+}
+
+.logo_text {
+  display: flex;
+  align-items: center;
 }

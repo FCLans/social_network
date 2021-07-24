@@ -1,16 +1,24 @@
+.body {
+  background-color: #edeef0;
+}
+
 .app_wrapper {
   display: grid;
-  margin: 20px 120px 0 120px;
+  margin: 0 120px;
+  width: 1200px;
 
-  grid-template-rows: 60px 1fr;
+  grid-template-rows: 60px 1fr 60px;
   grid-template-columns: 2fr 10fr;
   /* grid-gap: 10px; */
   grid-template-areas:
     'header header'
-    'navigation content_';
+    'navigation content_'
+    'footer footer';
 }
 
 .app_wrapper_content {
   grid-area: content_;
-  background-color: palegoldenrod;
+  background-color: #ffff;
+
+  padding: 20px;
 }
