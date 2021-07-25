@@ -9,7 +9,7 @@ import Settings from './components/Settings/Settings'
 import News from './components/News/News'
 import Footer from './components/Footer/Footer'
 
-const App = () => {
+const App = props => {
   return (
     <BrowserRouter>
       <div className="body">
@@ -18,11 +18,11 @@ const App = () => {
           <Navbar />
           <div className="app_wrapper_content">
             <Switch>
-              <Route component={Dialogs} path="/messages" />
+              <Route path="/messages" render={() => <Dialogs messagesData={props.messagesData} dialogsData={props.dialogsData} />} />
               <Route component={Music} path="/music" />
               <Route component={Settings} path="/settings" />
               <Route component={News} path="/news" />
-              <Route component={Profile} />
+              <Route render={() => <Profile postsData={props.postsData} />} />
             </Switch>
           </div>
           <Footer />
