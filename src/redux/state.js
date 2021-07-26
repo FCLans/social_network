@@ -20,7 +20,8 @@ const state = {
       {id: 4, name: 'Юлия'},
       {id: 5, name: 'Капуста'},
     ]
-  }
+  },
+  sidebar: []
 }
 
 export default state
