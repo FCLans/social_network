@@ -2,12 +2,12 @@ import styles from './MyPosts.module.css'
 import Post from './Post/Post'
 
 const MyPosts = props => {
-  let postsElements = props.postsData.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />)
+  let postsElements = props.data.postsData.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />)
 
   return (
     <div>
       <div>
-        <textarea></textarea>
+        <textarea />
       </div>
 
       <div>
