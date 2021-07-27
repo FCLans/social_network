@@ -1,23 +1,24 @@
 import styles from './MyPosts.module.css'
 import Post from './Post/Post'
-import React from "react";
-
+import React from 'react'
 
 const MyPosts = props => {
   let postsElements = props.data.postsData.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />)
-  let textPost = React.createRef()
+
+  const changeNewPostText = e => {
+    props.editeNewPostText(e.target.value)
+  }
 
   const addNewPost = () => {
-    if (textPost.current.value) {
-      props.addPost(textPost.current.value)
-      textPost.current.value = ''
+    if (props.data.newPostText) {
+      props.addPost(props.data.newPostText)
     }
   }
 
   return (
     <div>
       <div>
-        <textarea ref={textPost}/>
+        <textarea onChange={changeNewPostText} value={props.data.newPostText} />
       </div>
 
       <div>

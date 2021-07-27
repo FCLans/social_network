@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css'
 import Dialogs from './components/Dialogs/Dialogs'
 import Header from './components/Header/Header'
@@ -14,19 +14,18 @@ const App = props => {
     <BrowserRouter>
       <div className="body">
         <div className="app_wrapper">
-          <Header/>
-          <Navbar/>
+          <Header />
+          <Navbar />
           <div className="app_wrapper_content">
             <Switch>
-              <Route path="/messages"
-                     render={() => <Dialogs data={props.state.dialogsPage}/>}/>
-              <Route component={Music} path="/music"/>
-              <Route component={Settings} path="/settings"/>
-              <Route component={News} path="/news"/>
-              <Route render={() => <Profile data={props.state.profilePage} addPost={props.addPost}/>}/>
+              <Route path="/messages" render={() => <Dialogs data={props.state.dialogsPage} />} />
+              <Route component={Music} path="/music" />
+              <Route component={Settings} path="/settings" />
+              <Route component={News} path="/news" />
+              <Route render={() => <Profile data={props.state.profilePage} addPost={props.addPost} editeNewPostText={props.editeNewPostText} />} />
             </Switch>
           </div>
-          <Footer/>
+          <Footer />
         </div>
       </div>
     </BrowserRouter>

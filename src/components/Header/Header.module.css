@@ -8,12 +8,12 @@
 
 .logo {
   display: flex;
+  align-items: center;
 }
 
-.header img {
-  align-self:center;
+.logo img {
   width: 50px;
-
+  height: 50px;
 }
 
 .logo_text {
