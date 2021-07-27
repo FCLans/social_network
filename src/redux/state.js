@@ -6,7 +6,6 @@ const state = {
       { id: 1, message: 'Привет, мой первый пост!', likesCount: 120 },
       { id: 2, message: 'Разгоняемся и летим)))', likesCount: 20 },
     ],
-
     newPostText: '',
   },
   dialogsPage: {
@@ -28,10 +27,10 @@ const state = {
   sidebar: [],
 }
 
-export const addPost = textPost => {
+export const addPost = () => {
   const newPost = {
     id: state.profilePage.postsData[state.profilePage.postsData.length - 1].id + 1,
-    message: textPost,
+    message: state.profilePage.newPostText,
     likesCount: 0,
   }
 
