@@ -24,4 +24,14 @@ const state = {
   sidebar: []
 }
 
+export const addPost = (textPost) => {
+  const newPost = {
+    id: state.profilePage.postsData[state.profilePage.postsData.length - 1].id + 1,
+    message: textPost,
+    likesCount: 0
+  }
+
+  state.profilePage.postsData.push(newPost)
+}
+
 export default state

@@ -23,7 +23,7 @@ const App = props => {
               <Route component={Music} path="/music"/>
               <Route component={Settings} path="/settings"/>
               <Route component={News} path="/news"/>
-              <Route render={() => <Profile data={props.state.profilePage}/>}/>
+              <Route render={() => <Profile data={props.state.profilePage} addPost={props.addPost}/>}/>
             </Switch>
           </div>
           <Footer/>

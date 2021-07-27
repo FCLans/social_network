@@ -7,9 +7,9 @@ const MyPosts = props => {
   let postsElements = props.data.postsData.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />)
   let textPost = React.createRef()
 
-  const addPost = () => {
+  const addNewPost = () => {
     if (textPost.current.value) {
-      alert(textPost.current.value)
+      props.addPost(textPost.current.value)
       textPost.current.value = ''
     }
   }
@@ -21,7 +21,7 @@ const MyPosts = props => {
       </div>
 
       <div>
-        <button onClick={addPost}>Add post</button>
+        <button onClick={addNewPost}>Add post</button>
       </div>
 
       <div className={styles.posts}>{postsElements}</div>
