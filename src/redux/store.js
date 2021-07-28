@@ -25,30 +25,44 @@ const store = {
     },
     sidebar: [],
   },
-  _subscriber() {
+  _callSubscriber() {
     console.log('no subscribers (observers)')
   },
-  addPost() {
-    let newPost = {
-      id: this._state.profilePage.postsData[this._state.profilePage.postsData.length - 1].id + 1,
-      message: this._state.profilePage.newPostText,
-      likesCount: 0,
-    }
 
-    this._state.profilePage.postsData.push(newPost)
-    this.editeNewPostText('')
-    this._subscriber(this._state)
-  },
-  editeNewPostText(text) {
-    this._state.profilePage.newPostText = text
-    this._subscriber()
-  },
   subscribe(observer) {
-    this._subscriber = observer
+    this._callSubscriber = observer
   },
   getState() {
     return this._state
+  },
+
+  dispatch(action) { //{type: 'type_action', data: ...}
+    switch (action.type) {
+      case 'ADD_POST':
+
+        let newPost = {
+          id: this._state.profilePage.postsData[this._state.profilePage.postsData.length - 1].id + 1,
+          message: this._state.profilePage.newPostText,
+          likesCount: 0,
+        }
+
+        this._state.profilePage.postsData.push(newPost)
+        this._state.profilePage.newPostText = ''
+        this._callSubscriber(this._state)
+
+        break
+
+      case 'EDITE_NEW_POST_TEXT':
+        this._state.profilePage.newPostText = action.data
+        this._callSubscriber()
+
+        break
+
+      default:
+        break
+    }
   }
+
 }
 
 export default store

@@ -24,8 +24,7 @@ const App = props => {
               <Route component={News} path="/news" />
               <Route render={() => <Profile
                   profilePage={props.state.profilePage}
-                  addPost={props.store.addPost.bind(props.store)}
-                  editeNewPostText={props.store.editeNewPostText.bind(props.store)} />}
+                  dispatch={props.store.dispatch.bind(props.store)} />}
               />
             </Switch>
           </div>
