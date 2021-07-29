@@ -18,7 +18,9 @@ const App = props => {
           <Navbar />
           <div className="app_wrapper_content">
             <Switch>
-              <Route path="/messages" render={() => <Dialogs data={props.state.dialogsPage} />} />
+              <Route path="/messages" render={() => <Dialogs data={props.state.dialogsPage}
+                                                             dispatch={props.dispatch} />}
+              />
               <Route component={Music} path="/music" />
               <Route component={Settings} path="/settings" />
               <Route component={News} path="/news" />

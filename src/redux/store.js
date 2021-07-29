@@ -1,4 +1,5 @@
 import profileReducer from './profileReducer';
+import dialogsReducer from './dialogsReducer';
 
 const store = {
   _state: {
@@ -25,6 +26,7 @@ const store = {
         { id: 4, name: 'Юлия' },
         { id: 5, name: 'Капуста' },
       ],
+      newMessageText: ''
     },
     sidebar: [],
   },
@@ -36,6 +38,7 @@ const store = {
   },
   dispatch(action) {
     profileReducer(this._state, action)
+    dialogsReducer(this._state, action)
 
     this._callSubscriber(this._state)
   },
