@@ -1,5 +1,5 @@
 const store = {
-  state: {
+  _state: {
     profilePage: {
       postsData: [
         { id: 1, message: 'Привет, мой первый пост!', likesCount: 120 },
@@ -25,26 +25,29 @@ const store = {
     },
     sidebar: [],
   },
-  rerenderTree() {
+  _callSubscraber() {
     console.log('state changed')
+  },
+  subscribe(subscraber) {
+    this._callSubscraber = subscraber
+  },
+  getState() {
+    return this._state
   },
   addPost() {
     const newPost = {
-      id: this.state.profilePage.postsData[this.state.profilePage.postsData.length - 1].id + 1,
-      message: this.state.profilePage.newPostText,
+      id: this._state.profilePage.postsData[this._state.profilePage.postsData.length - 1].id + 1,
+      message: this._state.profilePage.newPostText,
       likesCount: 0,
     }
 
-    this.state.profilePage.postsData.push(newPost)
+    this._state.profilePage.postsData.push(newPost)
     this.editeNewPostText('')
-    this.rerenderTree()
+    this._callSubscraber()
   },
   editeNewPostText(text) {
-    this.state.profilePage.newPostText = text
-    this.rerenderTree()
-  },
-  subscribe(observer) {
-    this.rerenderTree = observer
+    this._state.profilePage.newPostText = text
+    this._callSubscraber()
   },
 }
 

@@ -11,7 +11,7 @@ const MyPosts = props => {
 
   const addNewPost = () => {
     if (props.data.newPostText) {
-      props.addPost(props.data.newPostText)
+      props.addPost()
     }
   }
 

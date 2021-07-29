@@ -5,9 +5,10 @@ import ReactDOM from 'react-dom'
 import App from './App'
 
 const rerenderTree = () => {
-    ReactDOM.render(<App state={store.state}
-                         addPost={store.addPost.bind(store)}
-                         editeNewPostText={store.editeNewPostText.bind(store)} />
+    const state = store.getState()
+
+    ReactDOM.render(<App state={state}
+                         store={store} />
         , document.getElementById('root'))
 }
 
