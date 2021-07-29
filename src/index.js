@@ -1,17 +1,16 @@
-import state, {subscribe} from './redux/state'
+import store from './redux/store'
 import './index.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { addPost, editeNewPostText } from './redux/state'
 
-const rerenderTree = state => {
-    ReactDOM.render(<App state={state}
-                         addPost={addPost}
-                         editeNewPostText={editeNewPostText} />
+const rerenderTree = () => {
+    ReactDOM.render(<App state={store.state}
+                         addPost={store.addPost.bind(store)}
+                         editeNewPostText={store.editeNewPostText.bind(store)} />
         , document.getElementById('root'))
 }
 
-rerenderTree(state)
+store.subscribe(rerenderTree)
 
-subscribe(rerenderTree)
+rerenderTree()
