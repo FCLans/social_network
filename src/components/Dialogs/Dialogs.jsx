@@ -2,28 +2,29 @@ import Dialog from './Dialog/Dialog'
 import styles from './Dialogs.module.css'
 import Message from './Message/Message'
 import React from 'react'
-
+import {editeNewMessageTextActionCreator, sendMessageActionCreator} from "../../redux/store";
 
 const Dialogs = props => {
-  let dialogsElements = props.data.dialogsData.map(d => <Dialog key={d.id} name={d.name} id={d.id} />)
-  let messagesElements = props.data.messagesData.map(m => <Message key={m.id} text={m.text} />)
-  const textNewMessage = React.createRef()
+  let dialogsElements = props.dialogsPage.dialogsData.map(d => <Dialog key={d.id} name={d.name} id={d.id} />)
+  let messagesElements = props.dialogsPage.messagesData.map(m => <Message key={m.id} text={m.text} />)
+
+  const editeNewMessageText = (e) => {
+    let text = e.target.value
+    props.dispatch(editeNewMessageTextActionCreator(text))
+  }
 
   const sendMessage = () => {
-    if (textNewMessage.current.value) {
-      alert(textNewMessage.current.value)
-      textNewMessage.current.value = ''
-    }
+    props.dispatch(sendMessageActionCreator())
   }
 
   return (
     <div className={styles.dialogs}>
-      <div className={styles.dialogs_items}>{dialogsElements}</div>
+      <div className={styles.dialogs_items}>{ dialogsElements }</div>
       <div className={styles.messages}>
         {messagesElements}
         <br/>
-        <div><textarea ref={textNewMessage}/></div>
-        <button onClick={sendMessage}>Send message</button>
+        <div><textarea onChange={ editeNewMessageText } value={props.dialogsPage.newMessageText}/></div>
+        <button onClick={ sendMessage }>Send message</button>
       </div>
     </div>
   )
