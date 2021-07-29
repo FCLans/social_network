@@ -1,17 +1,18 @@
 import styles from './MyPosts.module.css'
 import Post from './Post/Post'
 import React from 'react'
+import {addPostActionCreator, editeNewPostTextActionCreator} from "../../../redux/store";
 
 const MyPosts = props => {
   let postsElements = props.profilePage.postsData.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />)
 
   const changeNewPostText = e => {
-    props.dispatch({type: 'EDITE_NEW_POST_TEXT', data: e.target.value})
+    props.dispatch(editeNewPostTextActionCreator(e.target.value))
   }
 
   const addNewPost = () => {
     if (props.profilePage.newPostText) {
-      props.dispatch({type: 'ADD_POST'})
+      props.dispatch(addPostActionCreator())
     }
   }
 
