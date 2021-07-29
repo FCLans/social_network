@@ -1,5 +1,4 @@
-const ADD_POST = 'ADD_POST'
-const EDIT_NEW_POST_TEXT = 'EDIT_NEW_POST_TEXT'
+import profileReducer from './profileReducer';
 
 const store = {
   _state: {
@@ -36,39 +35,15 @@ const store = {
     return this._state
   },
   dispatch(action) {
-    switch (action.type) {
-      case ADD_POST:
-        const newPost = {
-          id: this._state.profilePage.postsData[this._state.profilePage.postsData.length - 1].id + 1,
-          message: this._state.profilePage.newPostText,
-          likesCount: 0,
-        }
+    profileReducer(this._state, action)
 
-        this._state.profilePage.postsData.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber(this._state)
-        break
-
-      case EDIT_NEW_POST_TEXT:
-        this._state.profilePage.newPostText = action.data
-        this._callSubscriber(this._state)
-        break
-
-      default:
-        break
-    }
+    this._callSubscriber(this._state)
   },
   subscribe(observer) {
     this._callSubscriber = observer
   }
 }
 
-export const NewPostTextActionCreator = (text) => {
-  return {
-    type: EDIT_NEW_POST_TEXT,
-    data: text
-  }
-}
-export const addPostActionCreator = () => ({type: ADD_POST})
+
 
 export default store
