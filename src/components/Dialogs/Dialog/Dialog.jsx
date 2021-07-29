@@ -1,5 +1,5 @@
 import styles from '../Dialogs.module.css'
-import { NavLink } from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 const Dialog = props => {
   let name = props.name

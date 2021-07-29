@@ -1,6 +1,6 @@
 import styles from './Navbar.module.css'
-import LinkItem from "./LinkItem/LinkItem";
-import Sidebar from "./Sidebar/Sidebar";
+import LinkItem from './LinkItem/LinkItem';
+import Sidebar from './Sidebar/Sidebar';
 
 const Navbar = () => {
   return (
@@ -11,7 +11,7 @@ const Navbar = () => {
       <LinkItem name="News" path="/news"/>
       <LinkItem name="Music" path="/music"/>
       <LinkItem name="Settings" path="/settings"/>
-      <Sidebar />
+      <Sidebar/>
     </nav>
   )
 }

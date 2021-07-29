@@ -1,13 +1,13 @@
 .dialogs {
-  display: grid;
-  margin-top: 10px;
+    display: grid;
+    margin-top: 10px;
 
-  grid-template-columns: 2fr 10fr;
+    grid-template-columns: 2fr 10fr;
 }
 
 .dialogs_items {
-  border-right: solid 2px;
-  margin: 0 40px 0 20px;
+    border-right: solid 2px;
+    margin: 0 40px 0 20px;
 }
 
 .dialog {
@@ -20,5 +20,5 @@
 }
 
 .dialogs_items .active {
-  color: brown;
+    color: brown;
 }
