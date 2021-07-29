@@ -34,21 +34,30 @@ const store = {
   getState() {
     return this._state
   },
-  addPost() {
-    const newPost = {
-      id: this._state.profilePage.postsData[this._state.profilePage.postsData.length - 1].id + 1,
-      message: this._state.profilePage.newPostText,
-      likesCount: 0,
-    }
+  dispatch(action) {
+    switch (action.type) {
+      case ('ADD_POST'):
+        const newPost = {
+          id: this._state.profilePage.postsData[this._state.profilePage.postsData.length - 1].id + 1,
+          message: this._state.profilePage.newPostText,
+          likesCount: 0,
+        }
 
-    this._state.profilePage.postsData.push(newPost)
-    this.editeNewPostText('')
-    this._callSubscraber()
-  },
-  editeNewPostText(text) {
-    this._state.profilePage.newPostText = text
-    this._callSubscraber()
-  },
+        this._state.profilePage.postsData.push(newPost)
+        this._state.profilePage.newPostText = ''
+        this._callSubscraber()
+
+        break
+
+      case ('EDITE_NEW_POST_TEXT'):
+        this._state.profilePage.newPostText = action.data
+        this._callSubscraber()
+        break
+
+      default:
+        break
+    }
+  }
 }
 
 export default store
