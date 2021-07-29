@@ -2,7 +2,7 @@ import Dialog from './Dialog/Dialog'
 import styles from './Dialogs.module.css'
 import Message from './Message/Message'
 import React from 'react'
-import {editeNewMessageTextActionCreator, sendMessageActionCreator} from "../../redux/store";
+import {editeNewMessageTextActionCreator, sendMessageActionCreator} from "../../redux/dialogsReducer";
 
 const Dialogs = props => {
   let dialogsElements = props.dialogsPage.dialogsData.map(d => <Dialog key={d.id} name={d.name} id={d.id} />)
@@ -21,10 +21,12 @@ const Dialogs = props => {
     <div className={styles.dialogs}>
       <div className={styles.dialogs_items}>{ dialogsElements }</div>
       <div className={styles.messages}>
-        {messagesElements}
+        <div>{messagesElements}</div>
         <br/>
-        <div><textarea onChange={ editeNewMessageText } value={props.dialogsPage.newMessageText}/></div>
-        <button onClick={ sendMessage }>Send message</button>
+        <div>
+          <div><textarea onChange={ editeNewMessageText } value={props.dialogsPage.newMessageText}/></div>
+          <div><button onClick={ sendMessage }>Send message</button></div>
+        </div>
       </div>
     </div>
   )
