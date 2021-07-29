@@ -1,5 +1,4 @@
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import './App.css'
 import Dialogs from './components/Dialogs/Dialogs'
 import Header from './components/Header/Header'
 import Music from './components/Music/Music'
@@ -8,6 +7,7 @@ import Profile from './components/Profile/Profile'
 import Settings from './components/Settings/Settings'
 import News from './components/News/News'
 import Footer from './components/Footer/Footer'
+import './App.css'
 
 const App = props => {
   return (

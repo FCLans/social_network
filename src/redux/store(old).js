@@ -2,7 +2,7 @@ import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 import sidebarReducer from "./sidebarReducer";
 
-const store = {
+const storeOld = {
   _state: {
     profilePage: {
       postsData: [
@@ -53,4 +53,4 @@ const store = {
 }
 
 
-export default store
+export default storeOld
