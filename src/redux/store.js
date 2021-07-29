@@ -1,5 +1,5 @@
-export const ADD_POST = 'ADD_POST'
-export const EDIT_NEW_POST_TEXT = 'EDIT_NEW_POST_TEXT'
+const ADD_POST = 'ADD_POST'
+const EDIT_NEW_POST_TEXT = 'EDIT_NEW_POST_TEXT'
 
 const store = {
   _state: {
@@ -62,5 +62,13 @@ const store = {
     this._callSubscriber = observer
   }
 }
+
+export const NewPostTextActionCreator = (text) => {
+  return {
+    type: EDIT_NEW_POST_TEXT,
+    data: text
+  }
+}
+export const addPostActionCreator = () => ({type: ADD_POST})
 
 export default store
