@@ -6,8 +6,7 @@ import App from './App'
 
 export const rerenderTree = state => {
   ReactDOM.render(<App state={state}
-                       addPost={store.addPost.bind(store)}
-                       editeNewPostText={store.editeNewPostText.bind(store)}
+                       dispatch={store.dispatch.bind(store)}
   />, document.getElementById('root'))
 }
 

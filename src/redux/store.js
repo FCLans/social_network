@@ -1,3 +1,6 @@
+export const ADD_POST = 'ADD_POST'
+export const EDIT_NEW_POST_TEXT = 'EDIT_NEW_POST_TEXT'
+
 const store = {
   _state: {
     profilePage: {
@@ -32,20 +35,28 @@ const store = {
   getState() {
     return this._state
   },
-  addPost(textPost) {
-    const newPost = {
-      id: this._state.profilePage.postsData[this._state.profilePage.postsData.length - 1].id + 1,
-      message: textPost,
-      likesCount: 0,
-    }
+  dispatch(action) {
+    switch (action.type) {
+      case ADD_POST:
+        const newPost = {
+          id: this._state.profilePage.postsData[this._state.profilePage.postsData.length - 1].id + 1,
+          message: this._state.profilePage.newPostText,
+          likesCount: 0,
+        }
 
-    this._state.profilePage.postsData.push(newPost)
-    this._state.profilePage.newPostText = ''
-    this._callSubscriber(this._state)
-  },
-  editeNewPostText(text) {
-    this._state.profilePage.newPostText = text
-    this._callSubscriber(this._state)
+        this._state.profilePage.postsData.push(newPost)
+        this._state.profilePage.newPostText = ''
+        this._callSubscriber(this._state)
+        break
+
+      case EDIT_NEW_POST_TEXT:
+        this._state.profilePage.newPostText = action.data
+        this._callSubscriber(this._state)
+        break
+
+      default:
+        break
+    }
   },
   subscribe(observer) {
     this._callSubscriber = observer
