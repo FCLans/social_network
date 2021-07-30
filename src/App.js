@@ -19,15 +19,11 @@ const App = props => {
           <Navbar/>
           <div className="app_wrapper_content">
             <Switch>
-              <Route path="/messages" render={() => <DialogsContainer
-                store={props.store}/>}
-              />
-              <Route component={Music} path="/music"/>
-              <Route component={Settings} path="/settings"/>
-              <Route component={News} path="/news"/>
-              <Route render={() => <Profile
-                store={props.store}/>}
-              />
+              <Route path="/messages" component={DialogsContainer}/>
+              <Route path="/music" component={Music} />
+              <Route path="/settings" component={Settings} />
+              <Route path="/news" component={News} />
+              <Route component={Profile}/>
             </Switch>
           </div>
           <Footer/>

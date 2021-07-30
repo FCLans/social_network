@@ -3,14 +3,18 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import './index.css'
+import StoreContext from "./redux/storeContext";
 
-const rerenderTree = (state) => {
-  ReactDOM.render(<App state={state} store={store}/>, document.getElementById('root'))
+const rerenderTree = () => {
+  ReactDOM.render(
+    <StoreContext.Provider value={store}>
+      <App />
+    </StoreContext.Provider>
+    , document.getElementById('root'))
 }
 
-rerenderTree(store.getState())
+rerenderTree()
 
 store.subscribe(() => {
-  const state = store.getState()
-  rerenderTree(state)
+  rerenderTree()
 })
