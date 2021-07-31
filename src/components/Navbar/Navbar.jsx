@@ -9,6 +9,7 @@ const Navbar = () => {
       <LinkItem name="Profile" path="/profile"/>
       <LinkItem name="Messages" path="/messages"/>
       <LinkItem name="News" path="/news"/>
+      <LinkItem name="Users" path="/users"/>
       <LinkItem name="Music" path="/music"/>
       <LinkItem name="Settings" path="/settings"/>
       <Sidebar/>

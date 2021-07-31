@@ -7,9 +7,11 @@ import Settings from './components/Settings/Settings'
 import News from './components/News/News'
 import Footer from './components/Footer/Footer'
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import UsersContainer from './components/Users/UsersContainer';
 import './App.css'
 
-const App = props => {
+
+const App = () => {
   return (
     <BrowserRouter>
       <div className="body">
@@ -22,6 +24,7 @@ const App = props => {
               <Route path="/music" component={Music} />
               <Route path="/settings" component={Settings} />
               <Route path="/news" component={News} />
+              <Route path="/users" component={UsersContainer} />
               <Route component={Profile}/>
             </Switch>
           </div>
