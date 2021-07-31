@@ -3,11 +3,14 @@ import Post from './Post/Post'
 import React from 'react'
 
 const MyPosts = props => {
-  let postsElements = props.profilePage.postsData.map(p => <Post key={p.id} message={p.message}
-                                                                 likesCount={p.likesCount}/>)
+  let postsElements = props.postsData.map((p) => {
+    return (
+      <Post key={p.id} message={p.message} likesCount={p.likesCount} />
+    )
+  })
 
   const changeNewPostText = e => {
-    props.editeNewPostText(e.target.value)
+    props.editNewPostText(e.target.value)
   }
 
   const addNewPost = () => {
@@ -17,7 +20,7 @@ const MyPosts = props => {
   return (
     <div>
       <div>
-        <textarea onChange={changeNewPostText} value={props.profilePage.newPostText}/>
+        <textarea onChange={changeNewPostText} value={props.newPostText}/>
       </div>
 
       <div>

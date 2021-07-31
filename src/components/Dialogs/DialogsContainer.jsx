@@ -1,17 +1,19 @@
-import {editeNewMessageTextActionCreator, sendMessageActionCreator} from '../../redux/dialogsReducer';
+import {editNewMessageTextActionCreator, sendMessageActionCreator} from '../../redux/dialogsReducer';
 import Dialogs from './Dialogs';
 import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
-    dialogsPage: state.dialogsPage
+    newMessageText: state.dialogsPage.newMessageText,
+    dialogsData: state.dialogsPage.dialogsData,
+    messagesData: state.dialogsPage.messagesData,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    editeNewTextMessage: (text) => {
-      dispatch(editeNewMessageTextActionCreator(text))
+    editNewTextMessage: (text) => {
+      dispatch(editNewMessageTextActionCreator(text))
     },
     sendNewMessage: () => {
       dispatch(sendMessageActionCreator())

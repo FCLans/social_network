@@ -5,11 +5,11 @@ import React from 'react'
 
 const Dialogs = props => {
   debugger
-  let dialogsElements = props.dialogsPage.dialogsData.map(d => <Dialog key={d.id} name={d.name} id={d.id}/>)
-  let messagesElements = props.dialogsPage.messagesData.map(m => <Message key={m.id} text={m.text}/>)
+  let dialogsElements = props.dialogsData.map(d => <Dialog key={d.id} name={d.name} id={d.id}/>)
+  let messagesElements = props.messagesData.map(m => <Message key={m.id} text={m.text}/>)
 
   const onChangeText = (e) => {
-    props.editeNewTextMessage(e.target.value)
+    props.editNewTextMessage(e.target.value)
   }
 
   const sendMessage = () => {
@@ -23,7 +23,7 @@ const Dialogs = props => {
         <div>{messagesElements}</div>
         <br/>
         <div>
-          <div><textarea onChange={onChangeText} value={props.dialogsPage.newMessageText}/></div>
+          <div><textarea onChange={onChangeText} value={props.newMessageText}/></div>
           <div>
             <button onClick={sendMessage}>Send message</button>
           </div>
