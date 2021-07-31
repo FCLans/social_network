@@ -3,13 +3,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import './index.css'
-import StoreContext from "./redux/storeContext";
+import {Provider} from "react-redux";
+
 
 const rerenderTree = () => {
   ReactDOM.render(
-    <StoreContext.Provider value={store}>
-      <App />
-    </StoreContext.Provider>
+    <Provider store={store}>
+      <App/>
+    </Provider>
     , document.getElementById('root'))
 }
 

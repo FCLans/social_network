@@ -9,7 +9,6 @@ import Footer from './components/Footer/Footer'
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import './App.css'
 
-
 const App = props => {
   return (
     <BrowserRouter>
