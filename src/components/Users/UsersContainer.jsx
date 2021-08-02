@@ -38,15 +38,14 @@ class UsersContainer extends React.Component {
   render() {
     return (
       <div>
-        {this.props.isLoadPage ?
-          <Loader /> :
-          <Users currentPage={this.props.currentPage}
-                 onClickPage={this.onClickPage}
-                 users={this.props.users}
-                 follow={this.props.follow}
-                 unfollow={this.props.unfollow}
-          />
-        }
+        {this.props.isLoadPage ? <Loader/> : null}
+        <Users currentPage={this.props.currentPage}
+               onClickPage={this.onClickPage}
+               users={this.props.users}
+               follow={this.props.follow}
+               unfollow={this.props.unfollow}
+        />
+
       </div>
 
     )
