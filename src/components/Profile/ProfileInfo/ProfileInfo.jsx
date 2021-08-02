@@ -1,6 +1,11 @@
 import styles from './ProfileInfo.module.css'
+import Loader from "../../common/Loader/Loader";
 
 const ProfileInfo = (props) => {
+  if (!props.profile) {
+    return <Loader />
+  }
+
   return (
     <div>
       <div>
@@ -8,8 +13,9 @@ const ProfileInfo = (props) => {
              alt="img"/>
       </div>
       <div className={styles.descriptions}>
-        <img src="https://img-tv.vl.ru/fhd/53a986214c80255fcc91a319615cb29419012c.jpg" alt="avatar"/>
-        ava + description
+        <div><h3>{props.profile.fullName}</h3></div>
+        <div><img src={props.profile.photos.large} alt="avatar"/></div>
+        <div>{props.profile.lookingForAJobDescription}</div>
       </div>
     </div>
   )
