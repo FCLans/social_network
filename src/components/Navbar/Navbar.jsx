@@ -2,7 +2,7 @@ import styles from './Navbar.module.css'
 import LinkItem from './LinkItem/LinkItem';
 import Sidebar from './Sidebar/Sidebar';
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <nav className={styles.navigation}>
 
