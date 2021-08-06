@@ -1,5 +1,6 @@
 import styles from './ProfileInfo.module.css'
 import Loader from "../../common/Loader/Loader";
+import avatar from '../../../assets/img/user.jpg'
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -14,7 +15,7 @@ const ProfileInfo = (props) => {
       </div>
       <div className={styles.descriptions}>
         <div><h3>{props.profile.fullName}</h3></div>
-        <div><img src={props.profile.photos.large} alt="avatar"/></div>
+        <div><img src={props.profile.photos.large ? props.profile.photos.large : avatar} alt="avatar"/></div>
         <div>{props.profile.lookingForAJobDescription}</div>
       </div>
     </div>

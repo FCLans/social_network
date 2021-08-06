@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 import Header from './components/Header/Header'
 import Music from './components/Music/Music'
 import Navbar from './components/Navbar/Navbar'
@@ -25,7 +25,9 @@ const App = () => {
               <Route path="/settings" component={Settings} />
               <Route path="/news" component={News} />
               <Route path="/users" component={UsersContainer} />
-              <Route component={ProfileContainer}/>
+              <Route path="/profile/:userId?" component={ProfileContainer}/>
+
+              <Redirect to="/profile" />
             </Switch>
           </div>
           <Footer/>
