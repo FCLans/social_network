@@ -28,7 +28,9 @@ const Users = (props) => {
       {props.users.map(u => <User unfollow={props.unfollow}
                                   follow={props.follow}
                                   key={u.id}
-                                  user={u}/>)}
+                                  user={u}
+                                  toggleFollowedInProgress={props.toggleFollowedInProgress}
+                                  followedInProgress={props.followedInProgress}/>)}
     </div>
   );
 }

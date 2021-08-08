@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import {
-  followAC,
+  followAC, isFollowingAC,
   setCurrentPageAC,
   setTotalUsersCountAC,
-  setUsersAC,
+  setUsersAC, toggleFollowedInProgressAC,
   unfollowAC
 } from '../../redux/usersReducer';
 import Users from "./Users";
@@ -44,6 +44,10 @@ class UsersContainer extends React.Component {
                users={this.props.users}
                follow={this.props.follow}
                unfollow={this.props.unfollow}
+               isFollowingToggle={this.props.isFollowingToggle}
+               toggleFollowedInProgress={this.props.toggleFollowedInProgress}
+               isFollowing={this.props.isFollowing}
+               followedInProgress={this.props.followedInProgress}
         />
 
       </div>
@@ -58,7 +62,8 @@ const mapStateToProps = (state) => {
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
-    isLoadPage: state.loader.isLoadPage
+    isLoadPage: state.loader.isLoadPage,
+    followedInProgress: state.usersPage.followedInProgress
   }
 }
 
@@ -81,7 +86,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     toggleIsLoadPage: (isLoadPage) => {
       dispatch(toggleIsLoadPageAC(isLoadPage))
-    }
+    },
+    toggleFollowedInProgress: (userId, isFollowing) => {
+      dispatch(toggleFollowedInProgressAC(userId, isFollowing))
+    },
   }
 }
 

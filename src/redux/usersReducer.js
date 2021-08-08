@@ -3,12 +3,15 @@ const UNFOLLOW = 'USERS/UNFOLLOW'
 const SET_USERS = 'USERS/SET_USERS'
 const SET_CURRENT_PAGE = 'USERS/SET_CURRENT_PAGE'
 const SET_TOTAL_COUNT_USERS = 'USERS/SET_TOTAL_COUNT_USERS'
+const TOGGLE_FOLLOWED_PROGRESS = 'USERS/TOGGLE_FOLLOWED_PROGRESS'
 
 const initialState = {
   users: [],
   pageSize: 5,
   totalUsersCount: 0,
-  currentPage: 1
+  currentPage: 1,
+  followedInProgress: [],
+  isFollowing: false
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -49,6 +52,14 @@ const usersReducer = (state = initialState, action) => {
     case SET_TOTAL_COUNT_USERS:
       return {...state, totalCountUsers: action.data}
 
+    case TOGGLE_FOLLOWED_PROGRESS:
+      return {
+        ...state,
+        followedInProgress: action.isFollowing
+          ? [...state.followedInProgress, action.userId]
+          : state.followedInProgress.filter(userId => userId !== action.userId)
+      }
+
     default:
       return state
   }
@@ -73,5 +84,10 @@ export const setCurrentPageAC = (numberPage) => {
 export const setTotalUsersCountAC = (count) => {
   return {type: SET_TOTAL_COUNT_USERS, data: count}
 }
+
+export const toggleFollowedInProgressAC = (userId, isFollowing) => {
+  return {type: TOGGLE_FOLLOWED_PROGRESS, userId: userId, isFollowing: isFollowing}
+}
+
 
 export default usersReducer

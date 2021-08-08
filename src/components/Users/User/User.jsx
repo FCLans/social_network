@@ -7,21 +7,29 @@ import {FollowedApi} from "../../../api/api"
 const User = (props) => {
 
   const onClickFollow = async () => {
+    props.toggleFollowedInProgress(props.user.id, true)
+
     await FollowedApi.follow(props.user.id)
       .then(result => {
         if (result.resultCode === 0) {
           props.follow(props.user.id)
         }
       })
+
+    props.toggleFollowedInProgress(props.user.id, false)
   }
 
   const onClickUnfollow = async () => {
+    props.toggleFollowedInProgress(props.user.id, true)
+
     await FollowedApi.unfollow(props.user.id)
       .then(result => {
         if (result.resultCode === 0) {
           props.unfollow(props.user.id)
         }
       })
+
+    props.toggleFollowedInProgress(props.user.id, false)
   }
 
   return (
@@ -34,8 +42,8 @@ const User = (props) => {
         </div>
         <div className={styles.following}>
           {
-            props.user.followed ? <button onClick={onClickUnfollow}>Отписаться</button> :
-              <button onClick={onClickFollow}>Подписаться</button>
+            props.user.followed ? <button disabled={props.followedInProgress.some(userId => userId === props.user.id)} onClick={onClickUnfollow}>Отписаться</button> :
+              <button disabled={props.followedInProgress.some(userId => userId === props.user.id)} onClick={onClickFollow}>Подписаться</button>
           }
         </div>
       </div>
