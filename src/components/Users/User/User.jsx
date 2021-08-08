@@ -1,9 +1,29 @@
 import React from 'react'
 import styles from '../Users.module.css'
 import userPhoto from '../../../assets/img/user.jpg'
-import {NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom"
+import {FollowedApi} from "../../../api/api"
 
 const User = (props) => {
+
+  const onClickFollow = async () => {
+    await FollowedApi.follow(props.user.id)
+      .then(result => {
+        if (result.resultCode === 0) {
+          props.follow(props.user.id)
+        }
+      })
+  }
+
+  const onClickUnfollow = async () => {
+    await FollowedApi.unfollow(props.user.id)
+      .then(result => {
+        if (result.resultCode === 0) {
+          props.unfollow(props.user.id)
+        }
+      })
+  }
+
   return (
     <div className={styles.userBlock}>
       <div className={styles.leftBlock}>
@@ -14,8 +34,8 @@ const User = (props) => {
         </div>
         <div className={styles.following}>
           {
-            props.user.followed ? <button onClick={() => {props.unfollow(props.user.id)}}>Отписаться</button> :
-              <button onClick={() => {props.follow(props.user.id)}}>Подписаться</button>
+            props.user.followed ? <button onClick={onClickUnfollow}>Отписаться</button> :
+              <button onClick={onClickFollow}>Подписаться</button>
           }
         </div>
       </div>

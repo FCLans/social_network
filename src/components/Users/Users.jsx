@@ -17,16 +17,18 @@ const Users = (props) => {
           pages.map(p => {
             return <span key={p}
                          className={props.currentPage === p ? styles.selectedPage : null}
-                         onClick={() => {props.onClickPage(p)}}>
+                         onClick={() => {
+                           props.onClickPage(p)
+                         }}>
               {p}
             </span>
           })
         }
       </div>
       {props.users.map(u => <User unfollow={props.unfollow}
-                                       follow={props.follow}
-                                       key={u.id}
-                                       user={u}/>)}
+                                  follow={props.follow}
+                                  key={u.id}
+                                  user={u}/>)}
     </div>
   );
 }

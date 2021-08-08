@@ -7,19 +7,19 @@ import {
   setUsersAC,
   unfollowAC
 } from '../../redux/usersReducer';
-import * as axios from "axios";
 import Users from "./Users";
 import Loader from "../common/Loader/Loader";
 import {toggleIsLoadPageAC} from "../../redux/loaderReducer";
+import {UsersApi} from "../../api/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.toggleIsLoadPage(true)
 
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+    UsersApi.getUsers(this.props.currentPage, this.props.pageSize)
       .then(response => {
-        this.props.setUsers(response.data.items)
-        this.props.setTotalUsersCount(response.data.totalCount)
+        this.props.setUsers(response.items)
+        this.props.setTotalUsersCount(response.totalCount)
         this.props.toggleIsLoadPage(false)
       })
   }
@@ -28,9 +28,9 @@ class UsersContainer extends React.Component {
     this.props.setCurrentPage(numberPage)
     this.props.toggleIsLoadPage(true)
 
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`)
+    UsersApi.getUsers(numberPage, this.props.pageSize)
       .then(response => {
-        this.props.setUsers(response.data.items)
+        this.props.setUsers(response.items)
         this.props.toggleIsLoadPage(false)
       })
   }

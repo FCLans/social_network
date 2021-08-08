@@ -4,6 +4,7 @@ import {addPostActionCreator, editeNewPostTextActionCreator, setProfileInfoAC} f
 import Profile from "./Profile";
 import axios from "axios";
 import {withRouter} from 'react-router';
+import {ProfileApi} from "../../api/api";
 
 class ProfileContainer extends React.Component {
 
@@ -13,9 +14,9 @@ class ProfileContainer extends React.Component {
       userId = 10
     }
 
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+    ProfileApi.getProfileInfo(userId)
       .then(resp => {
-        this.props.setProfileData(resp.data)
+        this.props.setProfileData(resp)
       })
   }
 

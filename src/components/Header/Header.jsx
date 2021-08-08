@@ -2,7 +2,6 @@ import styles from './Header.module.css'
 import {NavLink} from 'react-router-dom';
 
 const Header = (props) => {
-  debugger
   return (
       <div className={styles.header}>
         <div className={styles.logo}>
