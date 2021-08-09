@@ -1,3 +1,6 @@
+import {UsersApi} from '../api/api';
+import {toggleIsLoadPageAC} from './loaderReducer';
+
 const FOLLOW = 'USERS/FOLLOW'
 const UNFOLLOW = 'USERS/UNFOLLOW'
 const SET_USERS = 'USERS/SET_USERS'
@@ -65,6 +68,7 @@ const usersReducer = (state = initialState, action) => {
   }
 }
 
+//Action Creators
 export const followAC = (userId) => {
   return {type: FOLLOW, data: userId}
 }
@@ -87,6 +91,51 @@ export const setTotalUsersCountAC = (count) => {
 
 export const toggleFollowedInProgressAC = (userId, isFollowing) => {
   return {type: TOGGLE_FOLLOWED_PROGRESS, userId: userId, isFollowing: isFollowing}
+}
+
+//Thunk Creators
+export const getUsersTC = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toggleIsLoadPageAC(true))
+    dispatch(setCurrentPageAC(currentPage))
+
+    UsersApi.getUsers(currentPage, pageSize)
+      .then(response => {
+        dispatch(setUsersAC(response.items))
+        dispatch(setTotalUsersCountAC(response.totalCount))
+        dispatch(toggleIsLoadPageAC(false))
+      })
+  }
+}
+
+export const followTC = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowedInProgressAC(userId, true))
+
+    UsersApi.follow(userId)
+      .then(result => {
+        if (result.resultCode === 0) {
+          dispatch(followAC(userId))
+
+        }
+        dispatch(toggleFollowedInProgressAC(userId, false))
+      })
+  }
+}
+
+export const unfollowTC = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowedInProgressAC(userId, true))
+
+    UsersApi.unfollow(userId)
+      .then(result => {
+        if (result.resultCode === 0) {
+          dispatch(unfollowAC(userId))
+        }
+
+        dispatch(toggleFollowedInProgressAC(userId, false))
+      })
+  }
 }
 
 

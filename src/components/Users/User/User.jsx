@@ -2,34 +2,15 @@ import React from 'react'
 import styles from '../Users.module.css'
 import userPhoto from '../../../assets/img/user.jpg'
 import {NavLink} from "react-router-dom"
-import {FollowedApi} from "../../../api/api"
 
 const User = (props) => {
 
-  const onClickFollow = async () => {
-    props.toggleFollowedInProgress(props.user.id, true)
-
-    await FollowedApi.follow(props.user.id)
-      .then(result => {
-        if (result.resultCode === 0) {
-          props.follow(props.user.id)
-        }
-      })
-
-    props.toggleFollowedInProgress(props.user.id, false)
+  const onClickFollow = () => {
+    props.follow(props.user.id)
   }
 
-  const onClickUnfollow = async () => {
-    props.toggleFollowedInProgress(props.user.id, true)
-
-    await FollowedApi.unfollow(props.user.id)
-      .then(result => {
-        if (result.resultCode === 0) {
-          props.unfollow(props.user.id)
-        }
-      })
-
-    props.toggleFollowedInProgress(props.user.id, false)
+  const onClickUnfollow = () => {
+    props.unfollow(props.user.id)
   }
 
   return (

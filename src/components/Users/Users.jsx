@@ -29,7 +29,6 @@ const Users = (props) => {
                                   follow={props.follow}
                                   key={u.id}
                                   user={u}
-                                  toggleFollowedInProgress={props.toggleFollowedInProgress}
                                   followedInProgress={props.followedInProgress}/>)}
     </div>
   );

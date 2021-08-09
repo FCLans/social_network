@@ -1,38 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import {
-  followAC, isFollowingAC,
-  setCurrentPageAC,
-  setTotalUsersCountAC,
-  setUsersAC, toggleFollowedInProgressAC,
-  unfollowAC
-} from '../../redux/usersReducer';
+import {followTC, getUsersTC, unfollowTC} from '../../redux/usersReducer';
 import Users from "./Users";
 import Loader from "../common/Loader/Loader";
-import {toggleIsLoadPageAC} from "../../redux/loaderReducer";
-import {UsersApi} from "../../api/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.toggleIsLoadPage(true)
-
-    UsersApi.getUsers(this.props.currentPage, this.props.pageSize)
-      .then(response => {
-        this.props.setUsers(response.items)
-        this.props.setTotalUsersCount(response.totalCount)
-        this.props.toggleIsLoadPage(false)
-      })
+    this.props.getUsers(this.props.currentPage, this.props.pageSize)
   }
 
   onClickPage = (numberPage) => {
-    this.props.setCurrentPage(numberPage)
-    this.props.toggleIsLoadPage(true)
-
-    UsersApi.getUsers(numberPage, this.props.pageSize)
-      .then(response => {
-        this.props.setUsers(response.items)
-        this.props.toggleIsLoadPage(false)
-      })
+    this.props.getUsers(numberPage, this.props.pageSize)
   }
 
   render() {
@@ -44,9 +22,6 @@ class UsersContainer extends React.Component {
                users={this.props.users}
                follow={this.props.follow}
                unfollow={this.props.unfollow}
-               isFollowingToggle={this.props.isFollowingToggle}
-               toggleFollowedInProgress={this.props.toggleFollowedInProgress}
-               isFollowing={this.props.isFollowing}
                followedInProgress={this.props.followedInProgress}
         />
 
@@ -69,27 +44,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    follow: (userId) => {
-      dispatch(followAC(userId))
-    },
-    unfollow: (userId) => {
-      dispatch(unfollowAC(userId))
-    },
-    setUsers: (users) => {
-      dispatch(setUsersAC(users))
-    },
-    setCurrentPage: (numberPage) => {
-      dispatch(setCurrentPageAC(numberPage))
-    },
-    setTotalUsersCount: (usersCount) => {
-      dispatch(setTotalUsersCountAC(usersCount))
-    },
-    toggleIsLoadPage: (isLoadPage) => {
-      dispatch(toggleIsLoadPageAC(isLoadPage))
-    },
-    toggleFollowedInProgress: (userId, isFollowing) => {
-      dispatch(toggleFollowedInProgressAC(userId, isFollowing))
-    },
+    follow: (userId) => dispatch(followTC(userId)),
+    unfollow: (userId) => dispatch(unfollowTC(userId)),
+    getUsers: (currentPage, pageSize) => dispatch(getUsersTC(currentPage, pageSize)),
   }
 }
 
