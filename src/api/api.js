@@ -37,3 +37,12 @@ export const ProfileApi = {
       })
   }
 }
+
+export const AuthApi = {
+  me() {
+    return instance.get(`auth/me`)
+      .then(response => {
+        return response.data
+      })
+  }
+}

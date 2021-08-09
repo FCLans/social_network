@@ -1,5 +1,7 @@
+import {ProfileApi} from '../api/api';
+
 const ADD_POST = 'PROFILE/ADD_POST'
-const EDITE_NEW_POST_TEXT = 'PROFILE/EDITE_NEW_POST_TEXT'
+const EDIT_NEW_POST_TEXT = 'PROFILE/EDIT_NEW_POST_TEXT'
 const SET_PROFILE_INFO = 'PROFILE/SET_PROFILE_INFO'
 
 const initialState = {
@@ -27,7 +29,7 @@ const profileReducer = (state = initialState, action) => {
         newPostText: ''
       }
 
-    case EDITE_NEW_POST_TEXT:
+    case EDIT_NEW_POST_TEXT:
       return {
         ...state, newPostText: action.data
       }
@@ -43,8 +45,20 @@ const profileReducer = (state = initialState, action) => {
   }
 }
 
+//Action Creators
 export const addPostActionCreator = () => ({type: ADD_POST})
-export const editeNewPostTextActionCreator = (text) => ({type: EDITE_NEW_POST_TEXT, data: text})
+export const editNewPostTextActionCreator = (text) => ({type: EDIT_NEW_POST_TEXT, data: text})
 export const setProfileInfoAC = (profile) => ({type: SET_PROFILE_INFO, data: profile})
 
+//Thunk Creators
+export const getProfileInfoTC = (userId) => {
+  return (dispatch) => {
+    ProfileApi.getProfileInfo(userId)
+      .then(resp => {
+        dispatch(setProfileInfoAC(resp))
+      })
+  }
+}
+
+//other
 export default profileReducer

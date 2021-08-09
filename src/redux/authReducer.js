@@ -1,3 +1,5 @@
+import {AuthApi} from '../api/api';
+
 const SET_AUTH_DATA = 'AUTH/SET_AUTH_DATA'
 
 const initialState = {
@@ -6,7 +8,6 @@ const initialState = {
   login: null,
   isAuth: false
 }
-
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,13 +21,26 @@ const authReducer = (state = initialState, action) => {
     default:
       return state
   }
-  return state
 }
 
-export const setAuthData = (data) => {
+//Action Creators
+export const setAuthDataAC = (data) => {
   return {
     type: SET_AUTH_DATA,
     data: data
+  }
+}
+
+//Thunk Creators
+export const setAuthDataTC = () => {
+  return (dispatch) => {
+    AuthApi.me().then(response => {
+      if(response.resultCode === 0 ) {
+        const authData = response.data
+
+        dispatch(setAuthDataAC(authData))
+      }
+    })
   }
 }
 

@@ -1,23 +1,22 @@
 import React from "react";
 import {connect} from "react-redux";
-import {addPostActionCreator, editeNewPostTextActionCreator, setProfileInfoAC} from "../../redux/profileReducer";
+import {
+  addPostActionCreator,
+  editNewPostTextActionCreator,
+  getProfileInfoTC
+} from '../../redux/profileReducer';
 import Profile from "./Profile";
-import axios from "axios";
 import {withRouter} from 'react-router';
-import {ProfileApi} from "../../api/api";
+
 
 class ProfileContainer extends React.Component {
-
   componentDidMount() {
     let userId = this.props.match.params.userId
     if (!userId) {
       userId = 10
     }
 
-    ProfileApi.getProfileInfo(userId)
-      .then(resp => {
-        this.props.setProfileData(resp)
-      })
+    this.props.getProfileInfo(userId)
   }
 
   render() {
@@ -36,14 +35,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     editNewPostText: (text) => {
-      dispatch(editeNewPostTextActionCreator(text))
+      dispatch(editNewPostTextActionCreator(text))
     },
     addPost: () => {
       dispatch(addPostActionCreator())
     },
-    setProfileData: (data) => {
-      dispatch(setProfileInfoAC(data))
-    }
+    getProfileInfo: (userId) => dispatch(getProfileInfoTC(userId))
   }
 }
 const ProfileContainerWithUrl = withRouter(ProfileContainer)
