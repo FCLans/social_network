@@ -1,4 +1,5 @@
 import {AuthApi} from '../api/api';
+import {toggleIsLoadPageAC} from "./loaderReducer";
 
 const SET_AUTH_DATA = 'AUTH/SET_AUTH_DATA'
 
@@ -37,7 +38,6 @@ export const setAuthDataTC = () => {
     AuthApi.me().then(response => {
       if(response.resultCode === 0 ) {
         const authData = response.data
-
         dispatch(setAuthDataAC(authData))
       }
     })

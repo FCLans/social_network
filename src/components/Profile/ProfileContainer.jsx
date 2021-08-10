@@ -7,6 +7,7 @@ import {
 } from '../../redux/profileReducer';
 import Profile from "./Profile";
 import {withRouter} from 'react-router';
+import {withRedirectComponent} from "../hoc/withRedirect";
 
 
 class ProfileContainer extends React.Component {
@@ -44,5 +45,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 const ProfileContainerWithUrl = withRouter(ProfileContainer)
+const withRedirect = withRedirectComponent(ProfileContainerWithUrl)
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainerWithUrl)
+export default connect(mapStateToProps, mapDispatchToProps)(withRedirect)
