@@ -1,34 +1,32 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux';
 import {followTC, getUsersTC, unfollowTC} from '../../redux/usersReducer';
-import Users from "./Users";
-import Loader from "../common/Loader/Loader";
+import Users from './Users';
+import Loader from '../common/Loader/Loader';
 
-class UsersContainer extends React.Component {
-  componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize)
+const UsersContainer = (props) => {
+  useEffect(() => {
+    props.getUsers(props.currentPage, props.pageSize)
+  }, [])
+
+  const onClickPage = (numberPage) => {
+    props.getUsers(numberPage, props.pageSize)
   }
 
-  onClickPage = (numberPage) => {
-    this.props.getUsers(numberPage, this.props.pageSize)
-  }
+  return (
+    <div>
+      {props.isLoadPage ? <Loader/> : null}
+      <Users currentPage={props.currentPage}
+             onClickPage={onClickPage}
+             users={props.users}
+             follow={props.follow}
+             unfollow={props.unfollow}
+             followedInProgress={props.followedInProgress}
+      />
 
-  render() {
-    return (
-      <div>
-        {this.props.isLoadPage ? <Loader/> : null}
-        <Users currentPage={this.props.currentPage}
-               onClickPage={this.onClickPage}
-               users={this.props.users}
-               follow={this.props.follow}
-               unfollow={this.props.unfollow}
-               followedInProgress={this.props.followedInProgress}
-        />
+    </div>
 
-      </div>
-
-    )
-  }
+  )
 }
 
 const mapStateToProps = (state) => {
