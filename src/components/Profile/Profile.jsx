@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 const Profile = props => {
   return (
     <div>
-      <ProfileInfo profile={props.profile}/>
+      <ProfileInfo profile={props.profile} {...props}/>
       <MyPosts {...props} />
     </div>
   )

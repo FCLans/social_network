@@ -12,6 +12,7 @@ const initialState = {
     {id: 2, message: 'Разгоняемся и летим)))', likesCount: 20},
   ],
   newPostText: '',
+  status: ''
 }
 
 
@@ -44,7 +45,7 @@ const profileReducer = (state = initialState, action) => {
     case SET_PROFILE_STATUS:
       return {
         ...state,
-        profileInfo: {...state.profileInfo, status: action.status}
+        status: action.status
       }
 
     default:
@@ -65,10 +66,25 @@ export const getProfileInfoTC = (userId) => {
       .then(resp => {
         dispatch(setProfileInfoAC(resp))
       })
+  }
+}
 
-    await ProfileApi.getStatus(userId)
+export const getUserStatus = (userId) => {
+  return (dispatch) => {
+    ProfileApi.getStatus(userId)
       .then(resp => {
         dispatch(setProfileStatusAC(resp))
+      })
+  }
+}
+
+export const updateUserStatus = (status) => {
+  return (dispatch) => {
+    ProfileApi.updateStatus(status)
+      .then(resp => {
+        if (resp.resultCode === 0) {
+          dispatch(setProfileStatusAC(status))
+        }
       })
   }
 }

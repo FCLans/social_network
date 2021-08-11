@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {
   addPostActionCreator,
   editNewPostTextActionCreator,
-  getProfileInfoTC
+  getProfileInfoTC, getUserStatus, updateUserStatus
 } from '../../redux/profileReducer';
 import Profile from "./Profile";
 import {withRouter} from 'react-router';
@@ -19,6 +19,7 @@ class ProfileContainer extends React.Component {
     }
 
     await this.props.getProfileInfo(userId)
+    this.props.getUserStatus(userId)
   }
 
   render() {
@@ -31,18 +32,17 @@ const mapStateToProps = (state) => {
     postsData: state.profilePage.postsData,
     newPostText: state.profilePage.newPostText,
     profile: state.profilePage.profileInfo,
+    status: state.profilePage.status
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    editNewPostText: (text) => {
-      dispatch(editNewPostTextActionCreator(text))
-    },
-    addPost: () => {
-      dispatch(addPostActionCreator())
-    },
-    getProfileInfo: (userId) => dispatch(getProfileInfoTC(userId))
+    editNewPostText: (text) => dispatch(editNewPostTextActionCreator(text)),
+    addPost: () => dispatch(addPostActionCreator()),
+    getProfileInfo: (userId) => dispatch(getProfileInfoTC(userId)),
+    getUserStatus: (userId) => dispatch(getUserStatus(userId)),
+    updateUserStatus: (status) => dispatch(updateUserStatus(status))
   }
 }
 

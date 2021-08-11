@@ -24,6 +24,7 @@ const UsersContainer = (props) => {
              follow={props.follow}
              unfollow={props.unfollow}
              followedInProgress={props.followedInProgress}
+             getUserStatus={props.getUserStatus}
       />
 
     </div>
@@ -38,7 +39,7 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isLoadPage: state.loader.isLoadPage,
-    followedInProgress: state.usersPage.followedInProgress
+    followedInProgress: state.usersPage.followedInProgress,
   }
 }
 

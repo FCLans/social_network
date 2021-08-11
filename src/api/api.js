@@ -42,6 +42,13 @@ export const ProfileApi = {
       .then(resp => {
         return resp.data
       })
+  },
+
+  updateStatus(status) {
+    return instance.put(``, {status: status})
+      .then(resp => {
+        return resp.data
+      })
   }
 }
 

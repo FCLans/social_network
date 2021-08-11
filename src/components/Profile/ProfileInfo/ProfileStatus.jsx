@@ -1,15 +1,28 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const initialState = {
-  editMode: false
+  editMode: false,
+  status: ''
 }
 
 export const ProfileStatus = (props) => {
   const [localState, setLocalState] = useState(initialState)
 
+  useEffect(() => {
+    setLocalState({
+      status: props.status
+    })
+  }, [props.status])
+
   const toggleMode = () => {
     setLocalState({
       editMode: !localState.editMode
+    })
+  }
+
+  const editStatusText = (e) => {
+    setLocalState({
+      status: e.target.value
     })
   }
 
@@ -18,14 +31,14 @@ export const ProfileStatus = (props) => {
       {!localState.editMode &&
         <div>
           <span onDoubleClick={toggleMode}>
-            {props.status}
+            {props.status || 'Статус отсутствует'}
           </span>
         </div>
       }
 
       {localState.editMode &&
         <div>
-          <input autoFocus={true} type="text" value={props.status} onBlur={toggleMode}/>
+          <input autoFocus={true} type="text" value={localState.status} onBlur={toggleMode} onChange={editStatusText}/>
         </div>
       }
     </div>
