@@ -1,10 +1,12 @@
 import styles from './ProfileInfo.module.css'
 import Loader from "../../common/Loader/Loader";
 import avatar from '../../../assets/img/user.jpg'
+import {ProfileStatus} from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
+
   if (!props.profile) {
-    return <Loader />
+    return <Loader/>
   }
 
   return (
@@ -17,6 +19,7 @@ const ProfileInfo = (props) => {
         <div><h3>{props.profile.fullName}</h3></div>
         <div><img src={props.profile.photos.large ? props.profile.photos.large : avatar} alt="avatar"/></div>
         <div>{props.profile.lookingForAJobDescription}</div>
+        <ProfileStatus status={props.profile.status}/>
       </div>
     </div>
   )

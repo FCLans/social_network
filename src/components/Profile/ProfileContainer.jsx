@@ -8,16 +8,17 @@ import {
 import Profile from "./Profile";
 import {withRouter} from 'react-router';
 import {withRedirectComponent} from "../hoc/withRedirect";
+import {compose} from "redux";
 
 
 class ProfileContainer extends React.Component {
-  componentDidMount() {
+  async componentDidMount() {
     let userId = this.props.match.params.userId
     if (!userId) {
       userId = 10
     }
 
-    this.props.getProfileInfo(userId)
+    await this.props.getProfileInfo(userId)
   }
 
   render() {
@@ -44,7 +45,9 @@ const mapDispatchToProps = (dispatch) => {
     getProfileInfo: (userId) => dispatch(getProfileInfoTC(userId))
   }
 }
-const ProfileContainerWithUrl = withRouter(ProfileContainer)
-const withRedirect = withRedirectComponent(ProfileContainerWithUrl)
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRedirect)
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+  withRedirectComponent
+)(ProfileContainer)

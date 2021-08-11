@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {followTC, getUsersTC, unfollowTC} from '../../redux/usersReducer';
 import Users from './Users';
 import Loader from '../common/Loader/Loader';
+import {compose} from "redux";
+import {withRedirectComponent} from "../hoc/withRedirect";
 
 const UsersContainer = (props) => {
   useEffect(() => {
@@ -48,4 +50,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRedirectComponent
+)(UsersContainer)

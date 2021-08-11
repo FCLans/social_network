@@ -3,6 +3,7 @@ import {ProfileApi} from '../api/api';
 const ADD_POST = 'PROFILE/ADD_POST'
 const EDIT_NEW_POST_TEXT = 'PROFILE/EDIT_NEW_POST_TEXT'
 const SET_PROFILE_INFO = 'PROFILE/SET_PROFILE_INFO'
+const SET_PROFILE_STATUS = 'PROFILE/SET_PROFILE_STATUS'
 
 const initialState = {
   profileInfo: null,
@@ -40,6 +41,12 @@ const profileReducer = (state = initialState, action) => {
         profileInfo: action.data
       }
 
+    case SET_PROFILE_STATUS:
+      return {
+        ...state,
+        profileInfo: {...state.profileInfo, status: action.status}
+      }
+
     default:
       return state
   }
@@ -49,13 +56,19 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = () => ({type: ADD_POST})
 export const editNewPostTextActionCreator = (text) => ({type: EDIT_NEW_POST_TEXT, data: text})
 export const setProfileInfoAC = (profile) => ({type: SET_PROFILE_INFO, data: profile})
+export const setProfileStatusAC = (status) => ({type: SET_PROFILE_STATUS, status: status})
 
 //Thunk Creators
 export const getProfileInfoTC = (userId) => {
-  return (dispatch) => {
-    ProfileApi.getProfileInfo(userId)
+  return async (dispatch) => {
+    await ProfileApi.getProfileInfo(userId)
       .then(resp => {
         dispatch(setProfileInfoAC(resp))
+      })
+
+    await ProfileApi.getStatus(userId)
+      .then(resp => {
+        dispatch(setProfileStatusAC(resp))
       })
   }
 }
