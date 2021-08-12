@@ -58,5 +58,14 @@ export const AuthApi = {
       .then(response => {
         return response.data
       })
+  },
+  login(email, password, rememberMe = false) {
+    return instance.post(`auth/login`, {email: email, password: password, rememberMe: rememberMe})
+      .then(resp => {
+        return resp.data
+      })
+  },
+  logout() {
+
   }
 }

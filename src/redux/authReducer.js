@@ -25,7 +25,7 @@ const authReducer = (state = initialState, action) => {
 }
 
 //Action Creators
-export const setAuthDataAC = (data) => {
+const setAuthDataAC = (data) => {
   return {
     type: SET_AUTH_DATA,
     data: data
@@ -41,6 +41,18 @@ export const setAuthDataTC = () => {
         dispatch(setAuthDataAC(authData))
       }
     })
+  }
+}
+
+export const loginTC = (email, password, rememberMe = false) => {
+  return (dispatch) => {
+    AuthApi.login(email, password, rememberMe)
+      .then(response => {
+
+        if(response.resultCode === 0) {
+          dispatch(setAuthDataTC())
+        }
+      })
   }
 }
 
