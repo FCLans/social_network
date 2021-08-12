@@ -30,7 +30,6 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     postsData: state.profilePage.postsData,
-    newPostText: state.profilePage.newPostText,
     profile: state.profilePage.profileInfo,
     status: state.profilePage.status,
     authId: state.auth.id
@@ -39,8 +38,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    editNewPostText: (text) => dispatch(editNewPostTextActionCreator(text)),
-    addPost: () => dispatch(addPostActionCreator()),
+    addPost: (newPostText) => dispatch(addPostActionCreator(newPostText)),
     getProfileInfo: (userId) => dispatch(getProfileInfoTC(userId)),
     getUserStatus: (userId) => dispatch(getUserStatus(userId)),
     updateUserStatus: (status) => dispatch(updateUserStatus(status))

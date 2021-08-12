@@ -1,7 +1,6 @@
 import {ProfileApi} from '../api/api';
 
 const ADD_POST = 'PROFILE/ADD_POST'
-const EDIT_NEW_POST_TEXT = 'PROFILE/EDIT_NEW_POST_TEXT'
 const SET_PROFILE_INFO = 'PROFILE/SET_PROFILE_INFO'
 const SET_PROFILE_STATUS = 'PROFILE/SET_PROFILE_STATUS'
 
@@ -11,7 +10,6 @@ const initialState = {
     {id: 1, message: 'Привет, мой первый пост!', likesCount: 120},
     {id: 2, message: 'Разгоняемся и летим)))', likesCount: 20},
   ],
-  newPostText: '',
   status: ''
 }
 
@@ -21,19 +19,13 @@ const profileReducer = (state = initialState, action) => {
     case ADD_POST:
       const newPost = {
         id: state.postsData[state.postsData.length - 1].id + 1,
-        message: state.newPostText,
+        message: action.newPostText,
         likesCount: 0,
       }
 
       return {
         ...state,
         postsData: [...state.postsData, newPost],
-        newPostText: ''
-      }
-
-    case EDIT_NEW_POST_TEXT:
-      return {
-        ...state, newPostText: action.data
       }
 
     case SET_PROFILE_INFO:
@@ -54,8 +46,7 @@ const profileReducer = (state = initialState, action) => {
 }
 
 //Action Creators
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const editNewPostTextActionCreator = (text) => ({type: EDIT_NEW_POST_TEXT, data: text})
+export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText: newPostText})
 export const setProfileInfoAC = (profile) => ({type: SET_PROFILE_INFO, data: profile})
 export const setProfileStatusAC = (status) => ({type: SET_PROFILE_STATUS, status: status})
 

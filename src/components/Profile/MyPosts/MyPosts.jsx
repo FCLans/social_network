@@ -1,32 +1,18 @@
 import styles from './MyPosts.module.css'
 import Post from './Post/Post'
 import React from 'react'
+import {PostTextFormRedux} from "./PostTextForm/PostTextForm";
 
 const MyPosts = props => {
-  let postsElements = props.postsData.map((p) => {
-    return (
-      <Post key={p.id} message={p.message} likesCount={p.likesCount} />
-    )
-  })
+  let postsElements = props.postsData.map((p) => <Post key={p.id} message={p.message} likesCount={p.likesCount} />)
 
-  const changeNewPostText = e => {
-    props.editNewPostText(e.target.value)
-  }
-
-  const addNewPost = () => {
-    props.addPost()
+  const addNewPost = (formData) => {
+    props.addPost(formData.newPostText)
   }
 
   return (
     <div>
-      <div>
-        <textarea onChange={changeNewPostText} value={props.newPostText}/>
-      </div>
-
-      <div>
-        <button onClick={addNewPost}>Add post</button>
-      </div>
-
+      <PostTextFormRedux onSubmit={addNewPost}/>
       <div className={styles.posts}>{postsElements}</div>
     </div>
   )
