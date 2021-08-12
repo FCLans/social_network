@@ -10,18 +10,21 @@ export const ProfileStatus = (props) => {
 
   useEffect(() => {
     setLocalState({
+      ...localState,
       status: props.status
     })
   }, [props.status])
 
   const toggleMode = () => {
     setLocalState({
+      ...localState,
       editMode: !localState.editMode
     })
   }
 
   const editStatusText = (e) => {
     setLocalState({
+      ...localState,
       status: e.target.value
     })
   }
