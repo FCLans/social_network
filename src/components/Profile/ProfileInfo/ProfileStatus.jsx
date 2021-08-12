@@ -20,6 +20,9 @@ export const ProfileStatus = (props) => {
       ...localState,
       editMode: !localState.editMode
     })
+     if (localState.status !== props.status) {
+       props.updateUserStatus(localState.status)
+     }
   }
 
   const editStatusText = (e) => {
