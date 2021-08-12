@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
-    newMessageText: state.dialogsPage.newMessageText,
     dialogsData: state.dialogsPage.dialogsData,
     messagesData: state.dialogsPage.messagesData,
   }
@@ -12,11 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    editNewTextMessage: (text) => {
-      dispatch(editNewMessageTextActionCreator(text))
-    },
-    sendNewMessage: () => {
-      dispatch(sendMessageActionCreator())
+    sendNewMessage: (newMessageText) => {
+      dispatch(sendMessageActionCreator(newMessageText))
     }
   }
 }
